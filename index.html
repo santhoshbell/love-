@@ -39,16 +39,17 @@ button{
   font-size:16px;
 }
 
-/* App */
-#app{
+/* Pages */
+.page{
   display:none;
   padding:20px;
 }
+#page1{ display:none; }
 
 .message{
   font-size:20px;
-  margin:15px 0;
   line-height:1.5;
+  margin:15px 0;
 }
 
 /* Slideshow */
@@ -62,26 +63,10 @@ button{
   display:none;
   border-radius:20px;
 }
-.active{
-  display:block;
-}
+.active{ display:block; }
 
-/* WhatsApp */
-.whatsapp{
-  margin-top:20px;
-}
-.whatsapp a{
-  display:inline-block;
-  padding:12px 25px;
-  background:#25D366;
-  color:#fff;
-  border-radius:30px;
-  text-decoration:none;
-  font-size:16px;
-}
-
-/* Play Button */
-.playbtn{
+/* Buttons */
+.playbtn, .nextbtn{
   margin-top:15px;
   padding:10px 25px;
   border:none;
@@ -90,20 +75,43 @@ button{
   color:#fff;
   font-size:15px;
 }
+
+/* Love Page */
+.lovepara{
+  text-align:left;
+  font-size:18px;
+  line-height:1.7;
+  background:rgba(255,255,255,0.15);
+  padding:20px;
+  border-radius:20px;
+  margin-top:20px;
+}
+
+/* WhatsApp */
+.whatsapp a{
+  display:inline-block;
+  margin-top:20px;
+  padding:12px 25px;
+  background:#25D366;
+  color:#fff;
+  border-radius:30px;
+  text-decoration:none;
+  font-size:16px;
+}
 </style>
 </head>
 
 <body>
 
-<!-- Password Screen -->
+<!-- Lock -->
 <div id="lock">
   <h2>🔐 Enter Password</h2>
   <input type="password" id="pass" placeholder="Password">
   <button onclick="unlock()">Open 💖</button>
 </div>
 
-<!-- Main App -->
-<div id="app">
+<!-- PAGE 1 -->
+<div id="page1" class="page">
   <h1>💕 Shefriya Neenu 😘</h1>
 
   <div class="message">
@@ -112,43 +120,60 @@ button{
     Yen chella dorami 😘😘
   </div>
 
-  <!-- Photos -->
   <div class="slideshow">
     <img src="photo1.jpg" class="slide active">
     <img src="photo2.jpg" class="slide">
     <img src="photo3.jpg" class="slide">
   </div>
 
-  <!-- Play Song Button -->
-  <button class="playbtn" onclick="playSong()">🎶 Play Our Song</button>
+  <button class="playbtn" onclick="playSong()">🎶 Play Our Song</button><br>
+  <button class="nextbtn" onclick="openPage2()">💖 Next Page</button>
 
-  <!-- WhatsApp -->
-  <div class="whatsapp">
-    <a href="https://wa.me/?text=Happy%20Valentine's%20Day%20Shefriya%20Neenu%20💖%20I%20Love%20You" target="_blank">
-      💬 I Love You
-    </a>
-  </div>
-
-  <!-- Song -->
   <audio id="song" loop>
     <source src="newyork.mp3" type="audio/mpeg">
   </audio>
 </div>
 
+<!-- PAGE 2 -->
+<div id="page2" class="page">
+  <h2>❤️ Our 6 Months Love ❤️</h2>
+
+  <div class="lovepara">
+    Namma love start aagi ippo 6 months aaguthu.<br><br>
+    Indha 6 months-la sirippu, sanda, silent days, miss, care – ellamey irundhuchu.
+    Aana ellathukkum mela, nee irundha pothum ellamey sari aagiduchu.<br><br>
+    Nee message pannina oru “hi” kooda yen naal-a maathidum.
+    Yen life-la perfect-nu solla mudinja ore oru vishayam nee thaan.<br><br>
+    Future enna nu theriyala,
+    aana indha moment-la nee irukka nu theriyum – adhu podhum.<br><br>
+    Yen chella Doraami…
+    indha love journey-la naan unna kai vida maaten.
+  </div>
+
+  <div class="whatsapp">
+    <a href="https://wa.me/?text=6%20Months%20of%20Love%20with%20you%20Shefriya%20Neenu%20💖" target="_blank">
+      💬 Send Love
+    </a>
+  </div>
+</div>
+
 <script>
-/* Password */
 function unlock(){
   if(document.getElementById("pass").value==="saya0705"){
     document.getElementById("lock").style.display="none";
-    document.getElementById("app").style.display="block";
+    document.getElementById("page1").style.display="block";
   }else{
     alert("Wrong password 😅");
   }
 }
 
-/* Play Song */
 function playSong(){
   document.getElementById("song").play();
+}
+
+function openPage2(){
+  document.getElementById("page1").style.display="none";
+  document.getElementById("page2").style.display="block";
 }
 
 /* Slideshow */

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For💕💕😘😘 Shefriya Neenu ❤️</title>
+<title>💕 Shefriya neenu 😘</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -10,100 +10,186 @@ body{
   margin:0;
   height:100vh;
   background: radial-gradient(circle at top, #ff5fa2, #1a001f);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  overflow:hidden;
   font-family:'Segoe UI', sans-serif;
   color:white;
+  overflow:hidden;
   text-align:center;
 }
 
-.container{
-  z-index:2;
-  padding:20px;
+/* PASSWORD */
+#lock{
+  position:fixed;
+  inset:0;
+  background:#1a001f;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:10;
 }
-
-h1{
-  font-size:2.5em;
-  margin-bottom:10px;
-}
-
-.type{
-  font-size:1.2em;
-  min-height:60px;
-}
-
-button{
-  margin-top:25px;
-  padding:12px 30px;
+#lock input{
+  padding:12px;
+  border-radius:20px;
   border:none;
-  border-radius:30px;
-  font-size:1.1em;
-  background:#ff2f92;
-  color:white;
-  box-shadow:0 0 20px #ff2f92;
+  text-align:center;
+  font-size:1em;
+}
+#lock button{
+  margin-top:12px;
+  padding:10px 30px;
+  border:none;
+  border-radius:20px;
+  font-size:1em;
 }
 
+/* MAIN */
+.container{padding:20px;}
+h1{margin-bottom:8px;}
+#countdown{margin:10px 0;font-size:1.05em}
+
+/* VALENTINE */
+.valentine{
+  margin:12px auto;
+  padding:10px 14px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.12);
+  max-width:320px;
+  font-size:1em;
+}
+.valentine b{color:#ffd1e8}
+
+/* LOVE LINE */
+.loveline{
+  margin:10px auto 14px;
+  font-size:1.05em;
+  font-style:italic;
+  max-width:320px;
+  opacity:0.95;
+}
+
+/* SLIDESHOW */
+.slideshow img{
+  width:80%;
+  max-width:300px;
+  border-radius:20px;
+  display:none;
+  box-shadow:0 0 20px rgba(255,255,255,0.3);
+}
+
+/* BUTTON */
+.whatsapp{
+  margin-top:22px;
+  display:inline-block;
+  padding:14px 30px;
+  border-radius:30px;
+  background:#25D366;
+  color:white;
+  text-decoration:none;
+  font-size:1.1em;
+}
+
+/* HEARTS */
 .heart{
   position:absolute;
   bottom:-20px;
   font-size:20px;
   animation:float 6s linear infinite;
-  color:#ffb6d9;
 }
-
 @keyframes float{
-  0%{transform:translateY(0) scale(1);opacity:1;}
-  100%{transform:translateY(-110vh) scale(1.5);opacity:0;}
+  from{transform:translateY(0);opacity:1}
+  to{transform:translateY(-110vh);opacity:0}
 }
 </style>
 </head>
 
 <body>
 
-<audio autoplay loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7c3a7b77c3.mp3?filename=romantic-piano-112191.mp3">
+<!-- BACKGROUND MUSIC -->
+<audio id="bgm" loop>
+  <source src="love.mp3" type="audio/mpeg">
 </audio>
 
-<div class="container">
-  <h1>Shefriya Neenu ❤️</h1>
-  <div class="type" id="text"></div>
+<!-- PASSWORD LOCK -->
+<div id="lock">
+  <h2>🔐 Enter Password</h2>
+  <input id="pass" type="password" placeholder="Password">
+  <button onclick="unlock()">Open ❤️</button>
+</div>
 
-  <button onclick="alert('Forever starts here 💖')">
-    Will you be mine forever? 💍
-  </button>
+<!-- MAIN CONTENT -->
+<div class="container" id="main" style="display:none;">
+  <h1>Shefriya Neenu ❤️</h1>
+
+  <!-- VALENTINE MESSAGE -->
+  <div class="valentine">
+    🌹 <b>Happy Valentine’s Day</b> 🌹<br>
+    Nee irundha pothum… ellamey perfect-aa irukku 💕
+  </div>
+
+  <!-- LOVE LINE -->
+  <div class="loveline">
+    “New York nagarathula kooda,<br>
+    en idhayam un kitta thaan irukku.” 💖
+  </div>
+
+  <!-- COUNTDOWN -->
+  <div id="countdown"></div>
+
+  <!-- SLIDESHOW -->
+  <div class="slideshow">
+    <img src="https://picsum.photos/300/300?1">
+    <img src="https://picsum.photos/300/300?2">
+    <img src="https://picsum.photos/300/300?3">
+  </div>
+
+  <!-- WHATSAPP BUTTON -->
+  <a class="whatsapp"
+     href="https://wa.me/?text=Happy%20Valentine%E2%80%99s%20Day%20Shefriya%20Neenu%20%F0%9F%92%95%20I%20love%20you%20forever"
+     target="_blank">
+     💬 I Love You
+  </a>
 </div>
 
 <script>
-const message =
-"Ithu oru simple page illa…\n\
-Idhu en manasula irukkura ellaa feelings.\n\
-Nee sirikkum pothu world bright aagudhu.\n\
-Nee pakkathula irundhaa life complete.\n\
-Always special. Always you. ❤️";
-
-let i=0;
-function typeWriter(){
-  if(i<message.length){
-    document.getElementById("text").innerHTML +=
-      message.charAt(i) === "\n" ? "<br>" : message.charAt(i);
-    i++;
-    setTimeout(typeWriter,50);
+// PASSWORD + MUSIC
+function unlock(){
+  if(document.getElementById("pass").value==="saya0705"){
+    document.getElementById("lock").style.display="none";
+    document.getElementById("main").style.display="block";
+    document.getElementById("bgm").play();
+  }else{
+    alert("Wrong password 😌");
   }
 }
-typeWriter();
 
-function createHeart(){
-  const heart=document.createElement("div");
-  heart.className="heart";
-  heart.innerHTML="❤️";
-  heart.style.left=Math.random()*100+"vw";
-  heart.style.animationDuration=(3+Math.random()*3)+"s";
-  document.body.appendChild(heart);
-  setTimeout(()=>heart.remove(),6000);
-}
-setInterval(createHeart,300);
+// COUNTDOWN (FIRST MEET DATE: 20/09/2025)
+const meetDate = new Date("2025-09-20").getTime();
+setInterval(()=>{
+  const now = new Date().getTime();
+  const days = Math.floor((now - meetDate)/(1000*60*60*24));
+  document.getElementById("countdown").innerHTML =
+    "Together for <b>"+days+"</b> days 💕";
+},1000);
+
+// SLIDESHOW
+let i=0;
+const imgs=document.querySelectorAll(".slideshow img");
+setInterval(()=>{
+  imgs.forEach(img=>img.style.display="none");
+  imgs[i].style.display="block";
+  i=(i+1)%imgs.length;
+},2000);
+
+// HEARTS
+setInterval(()=>{
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=(3+Math.random()*3)+"s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+},300);
 </script>
 
 </body>
